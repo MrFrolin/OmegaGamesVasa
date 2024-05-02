@@ -1,6 +1,6 @@
 # OmegaGamesVasaPrivateProject
 
-Fullstack website for e-commerce built.
+Fullstack website for e-commerce.
 <br/>
 Repository pattern. Api with fastEndpoints and service to handle the frontend calls.
 <br/>
