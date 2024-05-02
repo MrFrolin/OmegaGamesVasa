@@ -1,0 +1,48 @@
+﻿@using OmegaGamesAPI.Services
+@using Common.DTO
+@using Microsoft.AspNetCore.Identity.Data
+@using OmegaGamesClient.Components.Layout
+@rendermode InteractiveServer
+@inject CustomerService customerService
+
+<div class="card shadow-sm col-md-3 mb-4 col-sm-6 m-2 product-card card-opacity">
+    <img class="card-img-top pt-3 img-size" src="@Product.Image" alt="@Product.ProductName">
+    <div class="card-body">
+        <h4 class="card-title">@Product.ProductName</h4>
+        <span class="card-subtitle">@Product.Description</span>
+    </div>
+    <div class="card-footer">
+        <div class="card-text product-price"><span>@Product.Price</span> kr</div>
+        <button type="button" class="btn btn-primary add-to-cart-button" @onclick="() => AddToCart()">Köp nu</button>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public ProductDTO Product { get; set; }
+
+    public string Image { get; set; }
+
+    private async Task AddToCart()
+    {
+        var productInCart = new ProductInCartDTO()
+        {
+            AgeRestriction = Product.AgeRestriction,
+            Category = Product.Category,
+            Description = Product.Description,
+            Genre = Product.Genre,
+            Id = Product.Id,
+            Image = Product.Image,
+            Price = Product.Price,
+            ProductKey = "",
+            ProductName = Product.ProductName
+        };
+        await customerService.AddToCart(productInCart);
+    }
+
+    protected override void OnInitialized()
+    {
+        Image = Product.Image;
+        base.OnInitialized();
+    }
+}

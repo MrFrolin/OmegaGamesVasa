@@ -1,0 +1,93 @@
+﻿@using OmegaGamesAPI.Services
+@using OmegaGamesClient.Data
+@using Microsoft.AspNetCore.Identity
+@inherits LayoutComponentBase
+@inject CustomerService customerService
+@inject NavigationManager navigationManager
+@inject SignInManager<ApplicationUser> signInManager
+
+<div class="page">
+    <main>
+        <nav class="navbar navbar-position fixed-top fw-bold navbar-dark navbar-expand-lg" id="navbar">
+            <div class="container-fluid">
+                <NavLink class="navbar-brand" href="/"> <img src="https://teamvasastorage.blob.core.windows.net/images/Logo_small_white.png" class="logo-image"/></NavLink>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="top-navbar">
+                    <ul class="navbar-nav justify-content-center flex-fill fs-2 col-md-auto">
+                        <li class="nav-item mt-1">
+                            <a class="nav-link text-white" aria-current="page" href="/" Match="NavLinkMatch.All">Hem</a>
+                        </li>
+                        <li class="nav-item mt-1">
+                            <a class="nav-link text-white" href="/ProductPage" Match="NavLinkMatch.Prefix">Produkter</a>
+                        </li>
+                        <li class="nav-item mt-1">
+                            <a class="nav-link text-white" href="/Event" Match="NavLinkMatch.Prefix">Events</a>
+                        </li>
+                        <AuthorizeView Roles="Admin">
+                            <Authorized>
+                                <li class="nav-item mt-1">
+                                    <a class="nav-link text-white" href="/Orders" Match="NavLinkMatch.Prefix">Ordrar</a>
+                                </li>
+                            </Authorized>
+                        </AuthorizeView>
+                    </ul>
+                    <ul class="navbar-nav ms-auto me-5">
+                        <AuthorizeView>
+                            <Authorized>
+                                <li class="nav-item mt-1">
+                                    <div class="btn btn-success active-user">
+                                        Administrator<span></span>
+                                    </div>
+                                </li>
+                                <li class="mt-1">
+                                    <NavLink class="nav-link text-white" href="/Logout" Match="NavLinkMatch.Prefix">Logga ut</NavLink>
+                                </li>
+                            </Authorized>
+                            <NotAuthorized>
+                                <li class="nav-item mt-1">
+                                    <NavLink class="nav-link text-white" href="/Account/Login" Match="NavLinkMatch.Prefix">Logga in</NavLink>
+                                </li>
+                            </NotAuthorized>
+                        </AuthorizeView>
+                        <li class="nav-item mt-1">
+                            <a class="nav-link text-white" href="/ShoppingCart" Match="NavLinkMatch.Prefix">
+                                Kundvagn
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <article>
+            @Body
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+<script>
+    window.addEventListener('scroll', function () {
+        var navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    });
+</script>
+
+<style>
+    .navbar-scrolled {
+        background-color: #3C454B;
+    }
+</style>
+
+@code {
+}
