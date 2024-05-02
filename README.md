@@ -1,4 +1,4 @@
-# OmegaGamesVasaPrivateProject
+# OmegaGamesVasaProject
 
 Fullstack website for e-commerce.
 <br/>
