@@ -2,7 +2,7 @@
 
 This project was developed by a team of developers with different specializations, working collaboratively using the Scrum methodology. The goal was to create a fully-featured e-commerce platform for both customers and administrators.
 
-![ShowcaseGIF](https://github.com/MrFrolin/Onboarding/blob/master/OnboardingShowCaseGIF.gif)
+![ShowcaseGIF](https://github.com/MrFrolin/OmegaGamesVasa/blob/master/OmegaGamesShowCase.gif)
 
 ## Tech Stack
 
